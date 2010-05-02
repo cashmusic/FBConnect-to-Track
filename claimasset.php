@@ -1,4 +1,8 @@
 <?php
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header("Pragma: no-cache");
+header("Cache-Control: no-cache");
+
 if (isset($_GET['approot'])) {
 	$returnurl = $_GET['approot'];
 } else {
@@ -13,7 +17,7 @@ if (isset($_GET['uid'])) {
 	// initialize the facebook API with your application API Key and Secret
 	$facebook = new Facebook(FACEBOOK_KEY,FACEBOOK_SECRET);
 	$fb_user = $_GET['uid'];
-	if ($facebook->api_client->pages_isFan(FACEBOOK_FANPAGE_ID, $uid = $fb_user)) {
+	if ($facebook->api_client->pages_isFan(FACEBOOK_FANPAGE_ID, $fb_user)) {
 		if (SECURE_DOWNLOAD) { 
 			// use S3 secured download:
 			require_once('./lib/S3.php');
