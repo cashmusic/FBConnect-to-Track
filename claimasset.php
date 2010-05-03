@@ -22,7 +22,7 @@ if (isset($_GET['uid'])) {
 			// use S3 secured download:
 			require_once('./lib/S3.php');
 			if (!defined('AMAZONS3_KEY') || !defined('AMAZONS3_SECRET')) {
-				header('Location: ./'); 
+				header('Location: '.$returnurl); 
 			}
 			$s3 = new S3(AMAZONS3_KEY, AMAZONS3_SECRET);
 			header("Location: " . S3::getAuthenticatedURL(AMAZONS3_BUCKET, DOWNLOAD_URI, 120));
@@ -31,7 +31,7 @@ if (isset($_GET['uid'])) {
 			header('Location: ' . DOWNLOAD_URI);
 		}
 	} else {
-		header('Location: '.$returnurl.'?logout=1');
+		header('Location: '.$returnurl);
 	}
 } else {
 	header('Location: '.$returnurl);
