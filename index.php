@@ -13,7 +13,7 @@ $currenturl = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$
 <link rel="icon" type="image/png" href="http://cashmusic.org/images/icons/cash.png" /> 
  
 <script src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js" type="text/javascript"></script>
-<script src="http://static.ak.fbcdn.net/connect/en_US/core.js"></script>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
 <script type="text/javascript">
 //<![CDATA[ 
 
@@ -108,7 +108,7 @@ window.addEvent('domready', function() {
 		</p>
 		
 		<div class="oneoftwo" style="margin:-10px 0 0 -10px;">
-			<fb:fan profile_id="<?php echo FACEBOOK_FANPAGE_ID; ?>" stream="0" connections="0" logobar="0" width="300"></fb:fan>
+			<fb:like-box profile_id="<?php echo FACEBOOK_FANPAGE_ID; ?>" width="300" stream="0" header="0" connections="0" logobar="0"></fb:like-box>
     	</div>
 		
 		<div class="oneoftwo lastone">
