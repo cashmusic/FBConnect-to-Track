@@ -8,21 +8,34 @@ if (isset($_GET['approot'])) {
 } else {
 	$returnurl = '/';
 }
-if (isset($_GET['uid'])) {
-	require_once('config.php');
-	require_once('./lib/facebook.php');
-	
-	$okaytodownload = false;
-	
-	// initialize the facebook API with your application API Key and Secret
-	$facebook = new Facebook(FACEBOOK_KEY,FACEBOOK_SECRET);
-	$fb_user = (string) $_GET['uid'];
-	if ($facebook->api_client->pages_isFan(FACEBOOK_FANPAGE_ID, $fb_user)) {
+
+require_once('config.php');
+require_once('./lib/facebook.php');
+
+$okaytodownload = false;
+
+// initialize the facebook API with your application API Key and Secret
+$facebook = new Facebook(array(
+	'appId'  => FACEBOOK_APPID,
+	'secret' => FACEBOOK_SECRET,
+	'cookie' => true
+));
+
+$session = $facebook->getSession();
+$fb_user = $session['uid'];
+
+try {
+	$testLikeStatus = $facebook->api(array(
+		'method' => 'pages.isfan',
+		'uid' => $fb_user,
+		'page_id' => FACEBOOK_FANPAGE_ID
+	));
+	if ($testLikeStatus) {
 		if (SECURE_DOWNLOAD) { 
 			// use S3 secured download:
 			require_once('./lib/S3.php');
 			if (!defined('AMAZONS3_KEY') || !defined('AMAZONS3_SECRET')) {
-				header('Location: '.$returnurl); 
+				header('Location: ./'); 
 			}
 			$s3 = new S3(AMAZONS3_KEY, AMAZONS3_SECRET);
 			header("Location: " . S3::getAuthenticatedURL(AMAZONS3_BUCKET, DOWNLOAD_URI, 120));
@@ -31,9 +44,9 @@ if (isset($_GET['uid'])) {
 			header('Location: ' . DOWNLOAD_URI);
 		}
 	} else {
-		header('Location: '.$returnurl);
+		header('Location: '.$returnurl.'?logout=1');
 	}
-} else {
-	header('Location: '.$returnurl);
-}
+} catch (FacebookApiException $e) {
+	echo "There seems to be an error on the Facebook servers.";
+} 
 ?>
