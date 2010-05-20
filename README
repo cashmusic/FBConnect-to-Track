@@ -6,11 +6,3 @@ requirements are that you give it a name and point it to your domain.
 More detailed instructions soon, but you can get started here:
 
 http://developers.facebook.com/get_started.php
-
-
-
-Built using the the connect-js (beta) library from Facebook:
-http://wiki.github.com/facebook/connect-js/faq
-
-and Jesse Stay's PHP client library reconfigured to work with connect-js:
-http://staynalive.com/articles/2010/03/22/geeky-php-client-library-that-works-with-the-new-facebook-javascript-sdk/
