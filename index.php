@@ -18,9 +18,16 @@ $currenturl = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$
 //<![CDATA[ 
 
 window.addEvent('domready', function() {	
+	if (FB) {
+		document.id('fb-message').set('html','');
+	}
+	
 	// initialize the library with your API key
 	// important: do NOT show your API secret here or anywhere in this script
-	FB.init({ apiKey: '<?php echo FACEBOOK_KEY; ?>' });
+	FB.init({ 
+		appId: '<?php echo FACEBOOK_APPID; ?>',
+		cookie: true 
+	});
 	
 	FB.getLoginStatus(handleAPIResponse);
 	
@@ -65,7 +72,7 @@ window.addEvent('domready', function() {
 			if (response) {
 				document.id('fb-message').set('html',
 					'<p><?php echo str_replace("'","\'",ISAFAN_MESSAGE); ?></p>'+
-					'<a href="claimasset.php?uid='+FB.getSession().uid+'&approot=<?php echo $currenturl; ?>" class="biglink"><?php echo DOWNLOAD_TITLE; ?></a>'+
+					'<a href="claimasset.php?approot=<?php echo $currenturl; ?>" class="biglink"><?php echo DOWNLOAD_TITLE; ?></a>'+
 					'<p class="smallmessage">'+
  					'<br />Enjoy it, and <a id="fbsharelink" href="http://www.facebook.com/sharer.php?u=<?php echo urlencode($currenturl) ?>">please share</a>!</p>'
 				);
