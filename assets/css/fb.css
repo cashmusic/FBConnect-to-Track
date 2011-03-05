@@ -1,0 +1,19 @@
+/* RESETS */
+html,body {height:100%;margin:0;padding:0;}
+body {background-color:#fff;font:11px/14px 'lucida grande', tahoma, verdana, arial, sans-serif;color:#000;text-align:left;}
+img {border:0;}
+a {color:#344880;text-decoration:none;}
+a:hover {text-decoration:underline;}
+h2 {font-size:14px;line-height:18px;font-weight:bold;margin:0;}
+p {margin:0 0 1em 0;}
+
+/* PAGE-SPECIFIC IDS */
+#mainspc {position:relative;top:0;left:0;width:520px;margin:0 auto;padding:0;}
+#fbsharelink {color:#DD3C10;}
+#messagespc {width:520px;margin:0;padding:0;}
+
+/* PAGE-SPECIFIC CLASSES */
+.alert {color:#DD3C10;font-weight:bold;}
+.biglink {font-size:1.6em;line-height:1.25em;display:block;margin-top:0.75em;font-weight:bold;}
+.smallmessage {color:#aaa;}
+.clearall {height:1px;overflow:hidden;visibility:hidden;clear:both;}
