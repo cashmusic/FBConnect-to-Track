@@ -1,7 +1,7 @@
 <?php 
 $currenturl = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] : "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 if($_SERVER['SCRIPT_FILENAME'] == __FILE__) {
-  header('Location: ' . $currenturl);
+  header('Location: /');
   exit;
 }
 
@@ -39,6 +39,11 @@ if (!empty($_POST['signed_request'])) {
 	$fb_signed_request = parse_signed_request($_POST['signed_request'],FACEBOOK_SECRET);
 	if (!empty($fb_signed_request['page']['id'])) {
 		$on_facebook_tab = true;
+		header('P3P: CP="CAO PSA OUR"'); // IE privacy policy fix
+		// The session won't work in IE without a privacy policy set. We've
+		// included a pretty generic policy here, but for more details and to
+		// ensure it reflects your own policies, go here:
+		// http://www.p3pwriter.com/LRN_111.asp
 		session_start();
 	}
 }

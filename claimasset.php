@@ -5,6 +5,7 @@ header("Cache-Control: no-cache");
 
 require_once('config.php');
 $okaytodownload = false;
+header('P3P: CP="CAO PSA OUR"'); // IE privacy policy fix
 session_start();
 
 if (isset($_GET['approot'])) {

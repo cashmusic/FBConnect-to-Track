@@ -36,7 +36,4 @@ define('AMAZONS3_BUCKET', 'xxxxxxxxx');
 define('DOWNLOAD_TITLE', 'FBConnect to a Track Code');
 // URL or amazon URI (if amazon, do not include bucket)
 define('DOWNLOAD_URI', 'http://your.file/goes.here.zip');
-
-// add a string to randomize the session variable names. or don't. whatever.
-define('RANDOMIZE_SESSION', 'abcdef');
 ?>
